@@ -1,0 +1,8 @@
+## Background Image Grid
+
+Implemented a responsive background grid of meal images using CSS Grid Layout. This approach was inspired by techniques discussed in the following resources:
+
+- [W3Schools: How To Create an Image Grid](https://www.w3schools.com/howto/howto_js_image_grid.asp)
+- [MDN Web Docs: CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout)
+
+All images used are sourced from [provide source or state they are original].

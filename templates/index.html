@@ -2,11 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cookbook</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
-    <h1>Welcome to the Cookbook!</h1>
-    <p>This is a simple web app for storing and sharing recipes.</p>
+<body class="layout-body">
+
+    <!-- Header -->
+    <header class="site-header">
+        <h1>Cookbook</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/add">Add Recipe</a>
+        </nav>
+    </header>
+
+    <!-- Background image grid -->
+    <div class="background-grid">
+        <div class="grid-wrapper">
+            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal1.jpg') }}');"></div>
+            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal2.jpg') }}');"></div>
+            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal3.jpg') }}');"></div>
+            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal4.jpg') }}');"></div>
+            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal5.jpg') }}');"></div>
+            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal6.jpg') }}');"></div>
+            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal7.jpg') }}');"></div>
+            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal8.jpg') }}');"></div>
+            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal9.jpg') }}');"></div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <main class="main-content">
+        <div style="text-align: center; margin-bottom: 1rem;">
+            <a href="/add" class="btn-add">➕ Add New Recipe</a>
+        </div>
+
+        <div class="recipes">
+            {% for recipe in recipes %}
+                <div class="recipe-card">
+                    <h2>{{ recipe.name }}</h2>
+                    <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+                    <p><strong>Steps:</strong> {{ recipe.steps }}</p>
+                    <p><strong>Cuisine:</strong> {{ recipe.cuisine }}</p>
+                    <p><strong>Tools:</strong> {{ recipe.tools }}</p>
+                    <a class="delete" href="/delete/{{ loop.index0 }}">🗑 Delete</a>
+                </div>
+            {% else %}
+                <p style="text-align: center;">No recipes added yet. Click above to create one!</p>
+            {% endfor %}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>&copy; 2025 My Cookbook App</p>
+    </footer>
+
 </body>
 </html>
