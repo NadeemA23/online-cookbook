@@ -68,6 +68,20 @@ Tested:
 Validation:
 - HTML validated using W3C Markup Validator
 - CSS validated using W3C CSS Validator
+---
+### 💡 UX / Wireframe Planning
+
+Due to technical issues with Balsamiq (crashing repeatedly), I instead planned the layout through iterative development and sketching.
+
+The final layout was built with user-first design in mind:
+- Simple navigation
+- Easy-to-use forms
+- Readable text over background
+- Footer that stays visible
+
+Below is a sketch of the homepage and add/edit form structure:
+![Wireframe Screenshot](static/images/wireframe1.png)
+![Wireframe Screenshot](static/images/wireframe2.png)
 
 ---
 
