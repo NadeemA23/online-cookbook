@@ -135,6 +135,17 @@ h1, h2 {
   line-height: 1.4;
 }
 
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+a.edit {
+  color: #1e90ff;
+  font-size: 0.9rem;
+}
+
 .recipe-card a.delete {
   color: red;
   font-size: 0.9rem;
@@ -201,4 +212,17 @@ form button:hover {
   display: flex;
   justify-content: center;
   margin-bottom: 2rem;
+}
+.no-recipes-message {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  text-align: center;
+  max-width: fit-content;
+  margin: 2rem auto;
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+  z-index: 1;
+  position: relative;
 }

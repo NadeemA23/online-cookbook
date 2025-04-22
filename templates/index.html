@@ -46,10 +46,15 @@
                     <p><strong>Steps:</strong> {{ recipe.steps }}</p>
                     <p><strong>Cuisine:</strong> {{ recipe.cuisine }}</p>
                     <p><strong>Tools:</strong> {{ recipe.tools }}</p>
-                    <a class="delete" href="/delete/{{ loop.index0 }}">🗑 Delete</a>
+                    <div class="card-actions">
+                        <a class="edit" href="/edit/{{ recipe.id }}">✏️ Edit</a>
+                        <a class="delete" href="/delete/{{ recipe.id }}">🗑 Delete</a>
+                      </div>
                 </div>
             {% else %}
-                <p style="text-align: center;">No recipes added yet. Click above to create one!</p>
+            <div class="no-recipes-message">
+                <p>No recipes added yet. Click above to create one!</p>
+              </div>
             {% endfor %}
         </div>
     </main>

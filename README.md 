@@ -1,3 +1,131 @@
+# 🍲 Cookbook – Recipe Management App
+
+This web app is designed to let users store, view, edit, and delete cooking recipes in a simple, user-friendly way. It was built using Flask (Python) on the back end and custom HTML/CSS on the front end.
+
+The goal was to create something that’s easy to use, clean-looking, and focused on functionality — while also showing what I’ve learned during the course.
+
+---
+
+## 📌 Project Purpose
+
+I built this app as part of my Code Institute portfolio projects. The idea was to create something that could be useful to everyday users — home cooks, meal preppers, or anyone looking to collect recipes in one place.
+
+It also helps simulate a small business or brand, since the site could be used to promote a range of cooking tools and equipment.
+
+I wanted to keep the design light, readable, and distraction-free, while still looking good visually — hence the background image grid and color scheme.
+
+---
+
+## 👥 Target Audience
+
+- People who want to collect or share recipes
+- Anyone looking for inspiration for what to cook
+- People who prefer a private, simple recipe tracker
+- Users who might also be browsing kitchen tools or cooking gear
+
+---
+
+## 🔧 Features
+
+- Full CRUD: Add, edit, delete, and view recipes
+- Recipes include ingredients, preparation steps, cuisine type, and required tools
+- Fully responsive layout with flexbox and grid
+- Soft image grid background using real meal photos
+- Clear call-to-action buttons
+- Form validation (HTML-level)
+- Footer always sticks to bottom
+- SQLite database integration for data persistence
+- Works on mobile, tablet, and desktop
+
+---
+
+## 📚 Technologies Used
+
+- **Python & Flask** – Core backend framework
+- **SQLite** – Local relational database
+- **HTML5** – Markup and structure
+- **CSS3** – Custom styling and responsive layout
+- **Google Fonts** – 'Inter' font used site-wide
+- **Git / GitHub / Gitpod** – Version control and development
+- **Pexels** – For meal images used in the background
+- **W3C Validators** – To validate HTML and CSS
+
+---
+
+## 🧪 Testing Summary
+
+Most of the testing was done manually during development and after feature implementation.
+
+Tested:
+- Adding and editing multiple recipes
+- Deleting recipes and ensuring layout adjusts
+- Empty form submissions blocked (HTML required fields)
+- Footer stays pinned to bottom of screen
+- Mobile navigation and responsiveness
+- Background readability over image grid
+- Database persists recipes across sessions
+
+Validation:
+- HTML validated using W3C Markup Validator
+- CSS validated using W3C CSS Validator
+
+---
+
+## ⚡ Lighthouse Test
+
+I ran Lighthouse in Chrome DevTools to check performance and accessibility.
+Lighthouse was run locally. Some performance impact may have been caused by browser extensions.
+
+| Area             | Score  |
+|------------------|--------|
+| Performance      | 77     |
+| Accessibility    | 82     |
+| Best Practices   | 96     |
+| SEO              | 90     |
+
+### Changes I made to improve these:
+- Resized and compressed images
+- Added `preconnect` to Google Fonts
+- Removed unused styles and cleaned up layout spacing
+- Ensured color contrast and alt text for accessibility
+
+![Lighthouse Screenshot](static/images/lighthouse.png)
+
+---
+
+## 🚀 Deployment
+
+This project will be deployed on **Heroku** once Code Institute provides student credits.
+
+Heroku deployment steps (already completed and ready):
+- Created `requirements.txt`, `Procfile`, and `runtime.txt`
+- App structure supports `python app.py` as entry point
+- Database is SQLite and auto-created at launch
+- Final push will be completed when credits activate
+
+**Live site:** _Coming soon — Heroku credits pending_
+
+---
+
+## 📦 Git & Version Control
+
+- Git was used for tracking changes and version history
+- All commits were made with clear messages during development
+- Project is hosted on GitHub
+
+---
+
+## 🧾 Attribution
+
+- **Google Fonts**: [https://fonts.google.com](https://fonts.google.com)
+- **Pexels (images)**: Meal background images
+- **General layout inspiration**: CSS Grid and Flexbox layout guides
+- **Flask + SQLite setup**: Guided by course material and Flask official docs
+- No external code copied — all written by me unless noted above
+
+---
+
+
 ## Background Image Grid
 
 Implemented a responsive background grid of meal images using CSS Grid Layout. This approach was inspired by techniques discussed in the following resources:
@@ -6,3 +134,13 @@ Implemented a responsive background grid of meal images using CSS Grid Layout. T
 - [MDN Web Docs: CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout)
 
 All images used are sourced from [provide source or state they are original].
+
+### 👤 Personal Note & AI Tools Disclaimer
+
+This project was built entirely by me, from scratch. The only exceptions are learning examples from Code Institute course material and inspiration from websites like Pexels or CSS Grid layout tutorials (credited above).
+
+I used ChatGPT a few times — not to write the code for me, but to help explain layout ideas, fix spacing/alignment issues, and double-check logic. Everything was implemented manually and understood fully.
+
+Due to personal circumstances, I had an extended absence during the course. That meant I was often learning new concepts and building the project at the same time. While it was a challenge, it also helped me learn faster and build confidence as I worked.
+
+---
