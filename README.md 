@@ -1,165 +1,224 @@
-🍲 Cookbook – Recipe Management App
-This web app is designed to let users store, view, edit, and delete cooking recipes in a simple, user-friendly way. It was built using Flask (Python) on the back end and custom HTML/CSS on the front end.
-
-The goal was to create something that’s easy to use, clean-looking, and focused on functionality — while also showing what I’ve learned during the course.
-
-## 📌 Project Purpose
-I built this app as part of my Code Institute portfolio projects. The idea was to create something that could be useful to everyday users — home cooks, meal preppers, or anyone looking to collect recipes in one place.
-
-It also helps simulate a small business or brand, since the site could be used to promote a range of cooking tools and equipment.
-
-I wanted to keep the design light, readable, and distraction-free, while still looking good visually — hence the background image grid and color scheme.
-
-## 👥 Target Audience
-People who want to collect or share recipes
-
-Anyone looking for inspiration for what to cook
-
-People who prefer a private, simple recipe tracker
-
-Users who might also be browsing kitchen tools or cooking gear
-
-## 🔧 Features
-Full CRUD: Add, edit, delete, and view recipes
-
-Recipes include ingredients, preparation steps, cuisine type, and required tools
-
-Fully responsive layout with flexbox and grid
-
-Soft image grid background using real meal photos
-
-Clear call-to-action buttons
-
-Form validation (HTML-level)
-
-Footer always sticks to bottom
-
-PostgreSQL database integration for data persistence
-
-Works on mobile, tablet, and desktop
-
-## 🛠️ Technologies Used
-Python & Flask – Backend framework
-
-PostgreSQL – Remote relational database hosted via dbs.ci-dbs.net
-
-Flask-SQLAlchemy – ORM for database operations
-
-Gunicorn – WSGI server for production deployment
-
-psycopg2-binary – PostgreSQL database adapter
-
-HTML5 – Markup and structure
-
-CSS3 – Custom styling and responsive layout
-
-Google Fonts – 'Inter' font used site-wide
-
-Git / GitHub / Gitpod – Version control and cloud IDE
-
-Render.com – Hosting and deployment platform
-
-Pexels – Source for meal background images
-
-W3C Validators – To validate HTML and CSS
-
-## 🧪 Testing Summary
-Most of the testing was done manually during development and after feature implementation.
-
-Tested:
-
-Adding and editing multiple recipes
-
-Deleting recipes and ensuring layout adjusts
-
-Empty form submissions blocked (HTML required fields)
-
-Footer stays pinned to bottom of screen
-
-Mobile navigation and responsiveness
-
-Background readability over image grid
-
-Database persists recipes across sessions
-
-Validation:
-
-HTML validated using W3C Markup Validator
-
-CSS validated using W3C CSS Validator
-
-## 💡 UX / Wireframe Planning
-Due to technical issues with Balsamiq (crashing repeatedly), I instead planned the layout through iterative development and sketching.
-
-The final layout was built with user-first design in mind:
-
-Simple navigation
-
-Easy-to-use forms
-
-Readable text over background
-
-Footer that stays visible
-
-Below is a sketch of the homepage and add/edit form structure:
-
-![Homepage Layout Sketch](static/images/wireframe1.png)
-![Homepage Layout Sketch](static/images/wireframe2.png)
 ![CI logo](assets/images/logo.png)
 
+## Quiz Game
+This project is a simple quiz game that challenges users with a series of questions on different topics. The game provides multiple-choice options for each question, and the user must select the correct answer. The project is designed to be interactive, engaging, and easy to navigate.
 
-## ⚡ Lighthouse Test
-I ran Lighthouse in Chrome DevTools to check performance and accessibility.
-Lighthouse was run locally. Some performance impact may have been caused by browser extensions.
+## Features:
+Homepage: The quiz game starts on the homepage, where users can click the "Start Quiz" button to begin playing.
+Questions: Each question is displayed one at a time, and the user must choose one of the provided answers.
+Scoring: The user's total score is displayed in real-time as they progress through the quiz.
 
+Feedback: After each answer selection, the user receives immediate feedback indicating whether their answer was correct or wrong and the background changes either to green with blue or red with blue which matches the theme throughout from the homepage.
 
-Area	Score
-Performance	77
-Accessibility	82
-Best Practices	96
-SEO	90
-Changes I made to improve these:
-Resized and compressed images
+Restart: Once the quiz is completed, the user has the option to restart the game by clicking the "Restart" button.
 
-Added preconnect to Google Fonts
+Styling: The website has a responsive and visually appealing design, with a color scheme that changes based on correct or wrong answers and is followed throughout.
 
-Removed unused styles and cleaned up layout spacing
+## Strategy:
 
-Ensured color contrast and alt text for accessibility
-![Lighthouse testing](/workspace/online-cookbook/static/images/lighthouse.png)
+The main objectives of this project are:
 
+- To provide an entertaining quiz game that challenges users' knowledge.
+- To engage users with interactive elements and immediate feedback.
+- To showcase the use of HTML, CSS, and JavaScript to create an interactive web application.
 
+### Quiz target auidence:
+- Male and female
+- individuals looking to test their knowledge
+- Those who enjoy interactive web experiences.
+- wide range of ages , anyone interested in common knowledge quiz's
 
-## 🚀 Deployment
-This project was deployed using Render.
+### What these users would be looking for:
 
-Here's how the deployment was done:
+- Easy site with appealing information
+- shows correct and wrong answer
+- tally count
 
-I created a requirements.txt file by running:
+## Structure:
 
-pgsql
-Copy
-pip freeze > requirements.txt
+### This is a multi page quiz consisting of the following:
+
+- index.html: The main HTML file containing the structure and layout of the quiz game.
+- style.css: The CSS file that handles the styling and layout of the website.
+- script.js: The JavaScript file responsible for the game's functionality and interactivity.
+
+### The quiz game is designed with the following pages:
+
+- Homepage: The start page of the quiz game with a "Start Quiz" button.
+- Question Page: Each question is displayed individually, and users can select an answer.
+- Result Page: After completing the quiz, the user is presented with their final score and the option to restart the game.
+- Installation
+
+To run the quiz game locally, follow these steps:
+
+Clone or download the repository to your local machine.
+Open the index.html file in your web browser.
+Technologies Used
+HTML
+CSS
+JavaScript
+
+## Scope:
+
+In order to get the correct ideas across , the game will contain these features: 
+
+- logo in web bar 
+- Interactive quiz where the background changes color depending on whether its correct or incorrect answer
+- A tally which updates every time a question is answered
+- Same color scheme / design throughout page.
+
+Future Enhancements
+
+Unfortunately, due to personal grievances, which led me to loose my first project which was a memory game i had to restart project 2 as a quiz due to time and I was unable to implement other ideas I wanted to include in this quiz. My time was cut very short; however, if I had more time, I would have been able to add them.
+  
+- Add a timer to each question to make the game more challenging.
+- Implement a database to store high scores and allow users to compete with others.
+- Expand the question bank to offer a more extensive quiz experience.
+- Creating a contents page where it links to different quiz challenges depending on the topic/subject.
+
+### Surface:
+
+The color scheme for this quiz/game is the same throughout, the start page is a 3 color contrast between red green and blue and the same colors are there throughout the quiz even when it changes to red or green for the correct or incorrect answers it is the sa,e design.
+
+### Skeleton:
+
+Please note the actual design has changed slightly since these wire-frames. i initially was using Balsamiq to create the wire-frames however the application crashed and will not load again causing me to loose the first produced wire-frames.I have attempted to install Balsamiq a few times to the same result.
+
+![wire-frame1](assets/images/StartQuiz.jpeg)
+![wire-frame2](assets/images/Quiz.jpeg)
+
+# Testing
+
+## User Stories: 
+
+As a first time visitor i want to easily flick through the questions whilst the tally is keeping count. As you can see if i answer correctly the tally will go up by 1 , and if i answer incorrectly the tally will go down .
+![correct answer screenshot](assets/images/Correct_Answer.png)
+![incorrect answer screenshot](assets/images/Incorrect_Answer.png)
+
+As A first time User i want to easily know whether ive answered correctly or incorrectly , which is easily noticeable by the background which changes color, green for correct answer or red for incorrect.
+![correct answer screenshot](assets/images/Correct_Answer.png)
+![incorrect answer screenshot](assets/images/Incorrect_Answer.png)
+
+## JSHint
+
+The Javascript on my code was tested/validated using JSHint. This website is very helpful as it flags up any warning or error in the code. I have shown an example below where i had many errors where i mainly missed semi-colons.
+
+![JSHint](assets/images/JSHint.png)
+
+## Lighthouse
+
+Lighthouse is a very good & useful tool found in chrome developer and is used to show the websites
+
+- Performance
+- Accessibility
+- Best Practices
+- SEO
+
+![lighthouse](assets/images/performance.png)
+
+As shown above my initial performance was in the orange at 85 , which after a few improvements and corrections it improved and is now in the green as you can see below.
+
+![lighthouse](assets/images/lighthouse.png)
+
+## HTML and CSS Validation:
+
+I often validated my HTML and CSS code whilst building the website to avoid making the same small errors and to decrease work load at end of project. 
+
+Upon running my HTML code i had 0 problems due to the fact i was continuously keeping an eye on it, however i did encounter a error when i went to validate my CSS code as you can see below.
+![CSSvalidator](assets/images/CSSerror.png)
+As you can see it was a very simple mistake , a word which was mistyped. After fixing this error the site has 0 errors.
+![CSSvalidator](assets/images/CSSnoerror.png)
+
+## Deployment:
+1. Log in to GitHub
+2. In your Repository section, select the project repository that you want to deploy
+3. In the menu located at the top of this section, click 'Settings'
+4. Select 'Pages' on the left-hand menu - this is around halfway down
+5. In the source section, select branch 'Master' and save
+6. The page is then given a site URL which you will see above the source section, it will look like the following:
+![GithubDeployment]()
+Please note it can take a while for this link to become fully active.
+
+## Forking the GitHub Repository
+If you want to make changes to your repository without affecting it, you can make a copy of it by 'Forking' it. This ensures your original repository remains unchanged.
+
+1. Find the relevant GitHub repository
+2. In the top right corner of the page, click the Fork button (under your account)
+3. Your repository has now been 'Forked' and you have a copy to work on
+## Cloning the GitHub Repository
+Cloning your repository will allow you to download a local version of the repository to be worked on. Cloning can also be a great way to backup your work.
+
+1. Find the relevant GitHub repository
+2. Press the arrow on the Code button
+3. Copy the link that is shown in the drop-down
+4. Now open Gitpod & select the directory location where you would like the clone created
+5. In the terminal type 'git clone' & then paste the link you copied in GitHub
+6. Press enter and your local clone will be created.
+
+## Technologies Used:
+
+[HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- Used as the basic building block for the project and to structure the content.
+
+[CSS](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics)
+- Used as the basic building block for the project and to structure the content.
+
+[Google Fonts](https://fonts.google.com/)
+- Used as the basic building block for the project and to structure the content.
+
+[Font Awesome](https://fontawesome.com/)
+- Used as the basic building block for the project and to structure the content.
+
+[GitHub](https://github.com/)
+- Used to store code for the project after being pushed.
+
+[Git](https://git-scm.com/)
+- Used for version control by utilising the Gitpod terminal to commit to Git and Push to GitHub.
+
+[Gitpod](https://www.gitpod.io/)
+- Used as the development environment.
+
+[Balsamiq](https://www.figma.com/)
+- Used to create the wire-frames for the project.
+
+[WebDev](https://courses.webdevsimplified.com/)
+- Watched a few tutorials for ideas.
+
+[Youtube](www.youtube.co.uk)
+- Watched and studied many videos to catchup on time missed due to grievances.
+
+[W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/#validate_by_input)
+- Used to validate all CSS code written and used in this webpage.
+
+[W3C Markup Validation Service](https://validator.w3.org/)
+- Used to validate all HTML code written and used in this webpage.
+
+[Bootstrap](https://getbootstrap.com/)
+- Obtained some code and researched and learnt various coding methods
+
+[uizard](https://uizard.io/)
+- Replacement application to create wire-frames since balsamiq stopped working.
+
 I added a Procfile with the line:
 
-makefile
+bash
 Copy
 web: gunicorn app:app
 A PostgreSQL database was set up through Code Institute's dbs.ci-dbs.net, and the database URL was stored securely on Render as an environment variable called DATABASE_URL.
 
 Build command used on Render:
 
-nginx
+bash
 Copy
 pip install -r requirements.txt
 Start command used:
 
-nginx
+bash
 Copy
 gunicorn app:app
 Connected my GitHub repo to Render and deployed from the main branch.
 
-## Live Site:
+Live Site:
 👉 https://online-cookbook-gxgd.onrender.com
 
 📦 Git & Version Control
@@ -169,63 +228,55 @@ All commits were made with clear messages during development.
 
 Project is hosted on GitHub.
 
-## 🧾 Attribution
-Google Fonts: For the 'Inter' font used across the site.
+🧾 Attribution
+Google Fonts – For the 'Inter' font used across the site
 
-Pexels: For the meal background images.
+Pexels – For the meal background images
 
-General layout inspiration: CSS Grid and Flexbox layout tutorials.
+General layout inspiration – CSS Grid and Flexbox layout tutorials
 
-Flask and SQLAlchemy setup: Based on Code Institute materials and Flask official documentation.
+Flask and SQLAlchemy setup – Based on Code Institute materials and Flask official documentation
 
-Render: Hosting platform used for deployment.
+Render – Hosting platform for deployment
 
-Neon (dbs.ci-dbs.net): PostgreSQL database hosting.
+Neon (dbs.ci-dbs.net) – PostgreSQL database hosting
 
 All code was written manually unless otherwise credited.
 
-## 📷 Background Image Grid
+📷 Background Image Grid
 I used a CSS Grid layout to create the background image grid.
-I got the idea from:
+
+The idea was inspired by:
 
 W3Schools: How To Create an Image Grid
 
 MDN Web Docs: CSS Grid Layout
 
-All images were sourced from Pexels, which provides free-to-use images.
+All images were sourced from Pexels.
 
-## 👤 Personal Note & AI Tools Disclaimer
+👤 Personal Note & AI Tools Disclaimer
 This project was built entirely by me.
 The only help I had was from Code Institute’s course materials and some layout tutorials (credited above).
 
-I used ChatGPT a few times — but only to explain layout ideas and help troubleshoot spacing or responsiveness issues. All final code was written by me manually after fully understanding what needed to be done.
+I used ChatGPT a few times — but only to explain layout ideas and fix some spacing or responsiveness issues. All code was manually written by me after understanding the solutions.
 
-Due to some personal issues during the course, I was often learning and building at the same time. It made the process challenging but also made me learn a lot faster.
+Due to personal circumstances during the course, I was often learning new concepts while building the project at the same time.
+It made the process challenging but also really helped me learn faster.
 I'm really happy with how the project turned out overall.
 
-## 🌟 Future Features
-If I return to this project, these are some features I would like to add:
+🌟 Future Features
+If I return to this project, I'd like to add:
 
-Search Bar: To let users search for recipes by name or type.
+Search Bar – To let users search for recipes by name or type
 
-User Accounts: So people could save their own private recipe collections.
+User Accounts – So people could save their own private recipe collections
 
-Recipe Categories: Group recipes like "Vegetarian", "Quick Meals", etc.
+Recipe Categories – Group recipes like "Vegetarian", "Quick Meals", etc
 
-Image Uploads: Let users upload a photo of their dish.
+Image Uploads – Let users upload a photo of their finished dish
 
-Ratings or Likes: Allow users to mark favorite recipes.
+Ratings or Likes – Allow users to mark favorite recipes
 
-Dark Mode: Add an option to toggle a dark-themed layout.
+Dark Mode – Add an option to toggle between light and dark themes
 
 These features would make the app even more useful and community-driven.
-
-### 👤 Personal Note & AI Tools Disclaimer
-
-This project was built entirely by me, from scratch. The only exceptions are learning examples from Code Institute course material and inspiration from websites like Pexels or CSS Grid layout tutorials (credited above).
-
-I used ChatGPT a few times — not to write the code for me, but to help explain layout ideas, fix spacing/alignment issues, and double-check logic. Everything was implemented manually and understood fully.
-
-Due to personal circumstances, I had an extended absence during the course. That meant I was often learning new concepts and building the project at the same time. While it was a challenge, it also helped me learn faster and build confidence as I worked.
-
----
