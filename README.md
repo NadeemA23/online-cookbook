@@ -76,7 +76,7 @@ The final layout was built with user-first design in mind:
 
 Below are wireframe sketches:
 
-![WIREFRAME1](./static/images/wireframe1.png)
+![WIREFRAME1](static/images/wireframe1.png)
 ![WIREFRAME2](static/images/wireframe2.png)
 
 ## ⚡ Lighthouse Test
