@@ -27,6 +27,12 @@ def register():
         return redirect(url_for('home'))
     return render_template("register.html")
 
+    @app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("login"))
+
 
 
 # Define the Recipe model
