@@ -63,6 +63,8 @@ def home():
 @app.route('/add', methods=['GET', 'POST'])
 @login_required
 def add_recipe():
+    if recipe.user_id != current_user.id:
+    abort(403)
     if request.method == 'POST':
         new_recipe = Recipe(
             name=request.form['name'],
@@ -98,6 +100,8 @@ def edit_recipe(recipe_id):
 @login_required
 @app.route('/delete/<int:recipe_id>')
 def delete_recipe(recipe_id):
+    if recipe.user_id != current_user.id:
+    abort(403)
     recipe = Recipe.query.get_or_404(recipe_id)
     db.session.delete(recipe)
     db.session.commit()
