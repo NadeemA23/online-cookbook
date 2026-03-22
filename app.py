@@ -59,6 +59,7 @@ def home():
 
 # Add Recipe
 @app.route('/add', methods=['GET', 'POST'])
+@login_required
 def add_recipe():
     if request.method == 'POST':
         new_recipe = Recipe(
@@ -75,6 +76,7 @@ def add_recipe():
 
 # Edit Recipe
 @app.route('/edit/<int:recipe_id>', methods=['GET', 'POST'])
+@login_required
 def edit_recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)
 
@@ -91,6 +93,7 @@ def edit_recipe(recipe_id):
     return render_template('edit_recipe.html', recipe=recipe)
 
 # Delete Recipe
+@login_required
 @app.route('/delete/<int:recipe_id>')
 def delete_recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)
