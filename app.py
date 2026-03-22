@@ -1,15 +1,18 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, abort
 from flask_sqlalchemy import SQLAlchemy
-import os
 from flask_login import LoginManager, login_user, login_required, logout_user, UserMixin, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
+# Initialize the Flask app
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'  # Local DB
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'mysecretkey'
 
+# Initialize database
 db = SQLAlchemy(app)
+
+# Initialize login manager
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
@@ -31,18 +34,19 @@ class Recipe(db.Model):
     tools = db.Column(db.String(100), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
-# Load user
+# Load user for Flask-Login
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-# Home Page
+# Home page - only show the logged-in user’s recipes
 @app.route('/')
+@login_required  # force login to see recipes
 def home():
-    recipes = Recipe.query.all()
+    recipes = Recipe.query.filter_by(user_id=current_user.id).all()
     return render_template('index.html', recipes=recipes)
 
-# Register
+# Registration
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -50,12 +54,15 @@ def register():
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("register"))
+
         hashed_password = generate_password_hash(request.form['password'])
         new_user = User(username=request.form['username'], password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
+
         login_user(new_user)
         return redirect(url_for('home'))
+
     return render_template("register.html")
 
 # Login
@@ -77,32 +84,35 @@ def logout():
     logout_user()
     return redirect(url_for("login"))
 
-# Add Recipe
-@app.route('/add', methods=['GET', 'POST'])
+# Add a recipe
+@app.route("/add", methods=["GET", "POST"])
 @login_required
 def add_recipe():
-    if request.method == 'POST':
+    if request.method == "POST":
         new_recipe = Recipe(
             name=request.form['name'],
             ingredients=request.form['ingredients'],
             steps=request.form['steps'],
             cuisine=request.form['cuisine'],
             tools=request.form['tools'],
-            user_id=current_user.id
+            user_id=current_user.id  # assign recipe to current user
         )
         db.session.add(new_recipe)
         db.session.commit()
         return redirect(url_for('home'))
-    return render_template('add_recipe.html')
+    return render_template("add_recipe.html")
 
-# Edit Recipe
-@app.route('/edit/<int:recipe_id>', methods=['GET', 'POST'])
+# Edit a recipe
+@app.route("/edit/<int:recipe_id>", methods=["GET", "POST"])
 @login_required
 def edit_recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)
+
+    # Prevent editing someone else’s recipe
     if recipe.user_id != current_user.id:
         abort(403)
-    if request.method == 'POST':
+
+    if request.method == "POST":
         recipe.name = request.form['name']
         recipe.ingredients = request.form['ingredients']
         recipe.steps = request.form['steps']
@@ -110,22 +120,27 @@ def edit_recipe(recipe_id):
         recipe.tools = request.form['tools']
         db.session.commit()
         return redirect(url_for('home'))
-    return render_template('edit_recipe.html', recipe=recipe)
 
-# Delete Recipe
-@app.route('/delete/<int:recipe_id>')
+    return render_template("edit_recipe.html", recipe=recipe)
+
+# Delete a recipe
+@app.route("/delete/<int:recipe_id>")
 @login_required
 def delete_recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)
+
+    # Prevent deleting someone else’s recipe
     if recipe.user_id != current_user.id:
         abort(403)
+
     db.session.delete(recipe)
     db.session.commit()
     return redirect(url_for('home'))
 
-# Initialize DB
+# Initialize the database
 with app.app_context():
     db.create_all()
 
+# Run the app
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
