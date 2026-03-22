@@ -12,30 +12,32 @@
     <header class="site-header">
         <h1>Cookbook</h1>
         <nav>
-            <a href="/">Home</a>
-            <a href="/add">Add Recipe</a>
+            <a href="{{ url_for('home') }}">Home</a>
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('add_recipe') }}">Add Recipe</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('register') }}">Register</a>
+            {% endif %}
         </nav>
     </header>
 
     <!-- Background image grid -->
     <div class="background-grid">
         <div class="grid-wrapper">
-            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal1.jpg') }}');"></div>
-            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal2.jpg') }}');"></div>
-            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal3.jpg') }}');"></div>
-            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal4.jpg') }}');"></div>
-            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal5.jpg') }}');"></div>
-            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal6.jpg') }}');"></div>
-            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal7.jpg') }}');"></div>
-            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal8.jpg') }}');"></div>
-            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal9.jpg') }}');"></div>
+            {% for i in range(1,10) %}
+            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal' ~ i ~ '.jpg') }}');"></div>
+            {% endfor %}
         </div>
     </div>
 
     <!-- Main content -->
     <main class="main-content">
         <div style="text-align: center; margin-bottom: 1rem;">
-            <a href="/add" class="btn-add">➕ Add New Recipe</a>
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('add_recipe') }}" class="btn-add">➕ Add New Recipe</a>
+            {% endif %}
         </div>
 
         <div class="recipes">
@@ -46,15 +48,18 @@
                     <p><strong>Steps:</strong> {{ recipe.steps }}</p>
                     <p><strong>Cuisine:</strong> {{ recipe.cuisine }}</p>
                     <p><strong>Tools:</strong> {{ recipe.tools }}</p>
-                    <div class="card-actions">
-                        <a class="edit" href="/edit/{{ recipe.id }}">✏️ Edit</a>
-                        <a class="delete" href="/delete/{{ recipe.id }}">🗑 Delete</a>
-                      </div>
+
+                    {% if current_user.is_authenticated and recipe.user_id == current_user.id %}
+                        <div class="card-actions">
+                            <a class="edit" href="{{ url_for('edit_recipe', recipe_id=recipe.id) }}">✏️ Edit</a>
+                            <a class="delete" href="{{ url_for('delete_recipe', recipe_id=recipe.id) }}">🗑 Delete</a>
+                        </div>
+                    {% endif %}
                 </div>
             {% else %}
-            <div class="no-recipes-message">
-                <p>No recipes added yet. Click above to create one!</p>
-              </div>
+                <div class="no-recipes-message">
+                    <p>No recipes added yet. Click above to create one!</p>
+                </div>
             {% endfor %}
         </div>
     </main>
