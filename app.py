@@ -36,6 +36,8 @@ def logout():
 
 
 # Define the Recipe model
+user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+new_recipe.user_id = current_user.id
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(150), unique=True, nullable=False)
