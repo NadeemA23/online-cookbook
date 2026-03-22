@@ -12,6 +12,21 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
 
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        existing_user = User.query.filter_by(username=request.form['username']).first()
+        if existing_user:
+            flash("Username already exists")
+            return redirect(url_for("register"))
+        hashed_password = generate_password_hash(request.form['password'])
+        new_user = User(username=request.form['username'], password=hashed_password)
+        db.session.add(new_user)
+        db.session.commit()
+        login_user(new_user)
+        return redirect(url_for('home'))
+    return render_template("register.html")
+
 
 
 # Define the Recipe model
