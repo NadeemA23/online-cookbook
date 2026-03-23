@@ -37,8 +37,15 @@ form input, form textarea, form select {
     padding: 0.6rem;
     margin-bottom: 1rem;
     border-radius: 6px;
-    border: 1px solid #ddd;  
+    border: 1px solid #ddd; 
+    box-sizing: border-box; 
     font-family: inherit;
+}
+
+form input, form textarea {
+    margin-right: 0; 
+    padding-right: 0.75rem; 
+    margin-bottom: 1rem;
 }
 
 form button {
