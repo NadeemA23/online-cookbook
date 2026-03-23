@@ -114,6 +114,45 @@ This section describes the manual tests performed to ensure that all functionali
 
 ![ER Diagram](static/images/testing_evidence.png)
 
+### 🧪 Manual Testing
+1. User Login with Invalid Details
+Action: Navigate to /login and enter a non-existing username or wrong password.
+Expected Result: Login fails, and an error message is displayed:
+"Invalid username or password"
+Observed Result: Error message shown in red above the form.
+Screenshot: ![log in error](static/images/login_test.png)
+
+2. User Login with Valid Details
+Action: Navigate to /login and enter a registered username and password.
+Expected Result: Login succeeds, and user is redirected to the home page showing their recipes.
+Observed Result: User successfully logged in; header shows Add Recipe and Logout links.
+Screenshot: ![succesful login](static/images/loggedin_test.png)
+
+3. Adding a Recipe
+Action: Click Add Recipe from the navigation bar. Fill out all fields (Name, Ingredients, Steps, Cuisine, Tools) and submit.
+Expected Result: New recipe is added to the database and immediately appears on the home page.
+Observed Result: Recipe appears correctly with all details. Add/Edit/Delete buttons appear only for the logged-in user’s recipes.
+Screenshot: ![add recipe](static/images/addrecipe_test.png)
+
+4. Editing a Recipe
+Action: Click Edit on one of your recipes. Modify any field and submit.
+Expected Result: Recipe updates in the database, and changes are reflected immediately on the home page.
+Observed Result: Recipe details updated successfully. Only the owner can edit their recipes; other users cannot access the edit page.
+Screenshot: ![edit recipe](static/images/editRecipe_test.png)
+
+5. Deleting a Recipe
+Action: Click Delete on one of your recipes. Confirm the deletion when prompted.
+Expected Result: Recipe is removed from the database and disappears from the home page. Only the owner can delete their recipes; others cannot see the delete option.
+Observed Result: Recipe deleted successfully; home page updates immediately.
+Screenshot: ![delete recipe](static/images/delete.png)
+
+
+6. User Logout
+Action: Click Logout in the navigation bar.
+Expected Result: User is logged out and redirected to the login page. Navigation options for Add Recipe and Logout are no longer visible; only Login and Register remain.
+Observed Result: Logout works correctly; user is returned to the login page.
+Screenshot: ![logout](static/images/logout.png)
+
 ## HTML & CSS Validation Notes
 
 While validating my HTML using the W3C Markup Validator, several warnings and errors were flagged. These were not actual functional errors but were caused by using Jinja template syntax (e.g., {{ url_for('home') }}) in the HTML files.
@@ -174,14 +213,37 @@ I ran Lighthouse in Chrome DevTools to check performance and accessibility. Ligh
 
 ![Lighthouse Testing](static/images/lighthouse.png)
 
+## 🐞 Bugs
+
+### Fixed Bugs
+- Add/Edit recipe stopped working after validation changes → Fixed by restoring correct form method and routes
+- CSS styling missing on login/register → Fixed by correcting static file paths
+- HTML validation errors due to Jinja syntax → Resolved by temporary replacement during validation
+
+### Known Bugs
+- No major bugs remaining
+
+## 🔐 Security Features
+
+- User authentication implemented using Flask-Login
+- Passwords securely hashed using Werkzeug
+- Users can only access their own recipes
+- Unauthorized access returns a 403 error
+- Environment variables used for sensitive data:
+  - `SECRET_KEY`
+  - `DATABASE_URL`
+- Debug mode disabled in production
+
+- Custom favicon added for branding
+
+
 ## 🚀 Deployment
 
 This project was deployed using **Render**.
 
-Here's how the deployment was done:
+### Steps:
 
-- I created a `requirements.txt` file by running:
-
+1. Create a `requirements.txt` file:
 ```bash
 pip freeze > requirements.txt
 

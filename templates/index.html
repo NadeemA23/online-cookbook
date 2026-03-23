@@ -27,21 +27,21 @@
   <div class="background-grid">
     <div class="grid-wrapper">
       {% for i in range(1,10) %}
-      <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal' ~ i ~ '.jpg') }}');"></div>
+        <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal' ~ i ~ '.jpg') }}');"></div>
       {% endfor %}
     </div>
   </div>
 
   <!-- Flash/Error messages -->
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <ul>
+  <div class="flash-messages">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
         {% for msg in messages %}
-          <li class="error">{{ msg }}</li>
+          <p class="error">{{ msg }}</p>
         {% endfor %}
-      </ul>
-    {% endif %}
-  {% endwith %}
+      {% endif %}
+    {% endwith %}
+  </div>
 
   <!-- Main content -->
   <main class="main-content">
