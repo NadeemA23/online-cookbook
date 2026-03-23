@@ -153,6 +153,8 @@ Expected Result: User is logged out and redirected to the login page. Navigation
 Observed Result: Logout works correctly; user is returned to the login page.
 Screenshot: ![logout](static/images/logout.png)
 
+
+
 ## HTML & CSS Validation Notes
 
 While validating my HTML using the W3C Markup Validator, several warnings and errors were flagged. These were not actual functional errors but were caused by using Jinja template syntax (e.g., {{ url_for('home') }}) in the HTML files.
