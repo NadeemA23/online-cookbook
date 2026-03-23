@@ -3,17 +3,24 @@ from flask import Flask, render_template, request, redirect, url_for, flash, abo
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, login_required, logout_user, UserMixin, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_migrate import Migrate  # Keep it after the app is created
 
 # Initialize the Flask app
 app = Flask(__name__)
+
+# Initialize the database URI with an environment variable (for Render)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
-'DATABASE_URL',
-    'sqlite:///database.db')  # Local DB
+    'DATABASE_URL',
+    'sqlite:///database.db')  # Default to SQLite for local development
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'fallback_secret') 
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'fallback_secret')  # Add a fallback for local dev
 
 # Initialize database
 db = SQLAlchemy(app)
+
+# Initialize the migrate object
+migrate = Migrate(app, db)  # Initialize after db setup
 
 # Initialize login manager
 login_manager = LoginManager()
@@ -142,7 +149,10 @@ def delete_recipe(recipe_id):
     db.session.commit()
     return redirect(url_for('home'))
 
-# Initialize the database
 with app.app_context():
     db.create_all()
 
+# Initialize the database - only do this for local development or migrations
+if __name__ == '__main__':
+    # Only for local development
+    app.run(debug=False)
