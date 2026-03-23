@@ -70,6 +70,46 @@ Most of the testing was done manually during development and after feature imple
 - Background readability over image grid
 - Database persists recipes across sessions
 
+## Manual Testing
+
+This section describes the manual tests performed to ensure that all functionality works correctly.
+
+### 1. User Registration
+
+1 Navigate to `/register` > Registration page loads > Page loads 
+2 Enter new username and password > User is registered and redirected to home > Works as expected
+3 Enter an existing username > Error message shown > "Username already exists" shown 
+
+### 2. Login
+
+1 Navigate to `/login` > Login page loads > Page loads 
+2 Enter correct username/password > User logs in, redirected to home > Works 
+3 Enter wrong username/password > Error message shown > "Invalid username or password" shown 
+
+### 3. Logout
+1 > Click Logout link > User is logged out, redirected to login page > Works
+
+### 4. Adding Recipes
+
+1 > Navigate to `/add` > Add recipe form loads > Works
+2 > Enter recipe details and submit > Recipe appears on home page > Works 
+3 > Check recipe belongs to logged-in user > Only visible to that user > Works 
+
+### 5. Editing Recipes
+1 Click Edit on your recipe > Edit form loads > Works 
+2 Change details and submit > Recipe updates correctly > Works 
+3 Try editing another user’s recipe > Access denied (403) > Works 
+
+### 6. Deleting Recipes
+1 Click Delete on your recipe >Confirmation appears > Works 
+2 Confirm deletion | Recipe is removed > Works 
+3 try deleting another user’s recipe > Access denied (403) > Works 
+
+### 7. Access Control
+- Recipes are **only visible to the user who created them**.  
+- Users cannot edit or delete recipes that belong to other users.  
+- Login is required to see any recipes, add, edit, or delete.
+
 ### Validation:
 - HTML validated using W3C Markup Validator
 - CSS validated using W3C CSS Validator
