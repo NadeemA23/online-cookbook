@@ -100,7 +100,7 @@ def add_recipe():
             steps=request.form['steps'],
             cuisine=request.form['cuisine'],
             tools=request.form['tools'],
-            user_id=current_user.id  # assign recipe to current user
+            user_id=current_user.id  # link recipe to logged-in user
         )
         db.session.add(new_recipe)
         db.session.commit()
