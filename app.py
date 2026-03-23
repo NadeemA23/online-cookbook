@@ -3,38 +3,29 @@ from flask import Flask, render_template, request, redirect, url_for, flash, abo
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, login_required, logout_user, UserMixin, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_migrate import Migrate  # Keep it after the app is created
 
-# Initialize the Flask app
 app = Flask(__name__)
-
-# Initialize the database URI with an environment variable (for Render)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
     'DATABASE_URL',
-    'sqlite:///database.db')  # Default to SQLite for local development
-
+    'sqlite:///database.db'
+)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'fallback_secret')  # Add a fallback for local dev
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'fallback_secret')
 
-# Initialize database
 db = SQLAlchemy(app)
 
-# Initialize the migrate object
-migrate = Migrate(app, db)  # Initialize after db setup
-
-# Initialize login manager
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
 
-# User model
+
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
     recipes = db.relationship('Recipe', backref='owner', lazy=True)
 
-# Recipe model
+
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -44,20 +35,19 @@ class Recipe(db.Model):
     tools = db.Column(db.String(100), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
-# Load user for Flask-Login
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-# Home page - only show the logged-in user’s recipes
+
 @app.route('/')
-@login_required  # force login to see recipes
+@login_required
 def home():
-    user_id = current_user.id
-    recipes = Recipe.query.filter_by(user_id=user_id).all()
+    recipes = Recipe.query.filter_by(user_id=current_user.id).all()
     return render_template('index.html', recipes=recipes)
 
-# Registration
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     message = None
@@ -76,7 +66,7 @@ def register():
 
     return render_template("register.html", message=message)
 
-# Login 
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     message = None
@@ -89,14 +79,14 @@ def login():
             message = "Invalid username or password"
     return render_template("login.html", message=message)
 
-# Logout
+
 @app.route("/logout")
 @login_required
 def logout():
     logout_user()
     return redirect(url_for("login"))
 
-# Add a recipe
+
 @app.route("/add", methods=["GET", "POST"])
 @login_required
 def add_recipe():
@@ -107,20 +97,19 @@ def add_recipe():
             steps=request.form['steps'],
             cuisine=request.form['cuisine'],
             tools=request.form['tools'],
-            user_id=current_user.id  # link recipe to logged-in user
+            user_id=current_user.id
         )
         db.session.add(new_recipe)
         db.session.commit()
         return redirect(url_for('home'))
     return render_template("add_recipe.html")
 
-# Edit a recipe
+
 @app.route("/edit/<int:recipe_id>", methods=["GET", "POST"])
 @login_required
 def edit_recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)
 
-    # Prevent editing someone else’s recipe
     if recipe.user_id != current_user.id:
         abort(403)
 
@@ -135,13 +124,12 @@ def edit_recipe(recipe_id):
 
     return render_template("edit_recipe.html", recipe=recipe)
 
-# Delete a recipe
+
 @app.route("/delete/<int:recipe_id>")
 @login_required
 def delete_recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)
 
-    # Prevent deleting someone else’s recipe
     if recipe.user_id != current_user.id:
         abort(403)
 
@@ -149,10 +137,10 @@ def delete_recipe(recipe_id):
     db.session.commit()
     return redirect(url_for('home'))
 
+
 with app.app_context():
     db.create_all()
 
-# Initialize the database - only do this for local development or migrations
+
 if __name__ == '__main__':
-    # Only for local development
     app.run(debug=False)
