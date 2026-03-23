@@ -191,3 +191,6 @@ Ratings or Likes – Allow users to mark favorite recipes
 Dark Mode – Add an option to toggle between light and dark themes
 
 These features would make the app even more useful and community-driven.
+
+## Testing
+Detailed testing documentation can be found in [TESTING.md](TESTING.md)
