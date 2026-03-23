@@ -153,6 +153,113 @@ Expected Result: User is logged out and redirected to the login page. Navigation
 Observed Result: Logout works correctly; user is returned to the login page.
 Screenshot: ![logout](static/images/logout.png)
 
+## Deployment Issues & Fixes
+
+During deployment on Render, several issues were encountered and resolved. This section documents the problems and solutions applied.
+
+---
+
+### 1. Application Failing to Start (Module Errors)
+
+- Initial deployment failed due to missing dependencies (e.g. `flask_login`)
+- Fixed by ensuring all required packages were included in `requirements.txt`
+- Re-deployed after updating dependencies
+
+---
+
+### 2. Procfile & Gunicorn Configuration
+
+- Confusion between running:
+  - `python app.py` (development)
+  - `gunicorn app:app` (production)
+- Correct setup for Render:
+
+
+web: gunicorn app:app
+
+
+- Ensured the file name matched (`app.py`) and not an incorrect module name (e.g. `pythonapp`)
+
+---
+
+### 3. Virtual Environment Issues (Local)
+
+Errors encountered:
+- `venv/bin/python ENOENT`
+- `source venv/bin/activate not found`
+
+Resolved by recreating the virtual environment:
+
+
+python3 -m venv venv
+pip install -r requirements.txt
+
+
+---
+
+### 4. Internal Server Error (500) After Deployment
+
+- Application deployed successfully but returned **500 errors** when:
+  - registering a user
+  - accessing the home page
+
+#### Root Cause:
+- Database schema mismatch
+- Models were updated (added `User` model and `user_id` foreign key), but the existing database tables were not updated
+
+---
+
+### 5. Database Fix (Key Solution)
+
+- Original database (Neon) was either inaccessible or outdated
+- Created a **new Neon PostgreSQL database**
+- Updated Render environment variable:
+
+
+DATABASE_URL = <new_neon_connection_string>
+
+
+- This allowed:
+  - `db.create_all()` to generate fresh tables
+  - schema to match current models
+
+---
+
+### 6. Environment Variables
+
+Added required environment variables in Render:
+- `DATABASE_URL`
+- `SECRET_KEY`
+
+- `SECRET_KEY` was manually generated and used for session security
+
+---
+
+### 7. Debugging Approach
+
+- Used Render logs to identify:
+  - startup errors vs runtime errors
+- Tested application in **incognito mode** to avoid caching issues
+- Narrowed failures down to database operations rather than routing
+
+---
+
+### Final Outcome
+
+- Application successfully deployed on Render
+- User authentication (register/login) working
+- Recipes can be created, edited, and deleted
+- Database fully connected and operational
+
+---
+
+### Key Learning
+
+- `db.create_all()` does **not update existing tables**, only creates new ones
+- Environment variables are critical in deployment
+- Database mismatches are a common cause of 500 errors in Flask apps
+- Production servers (Gunicorn) behave differently from local development
+
 
 
 ## HTML & CSS Validation Notes
