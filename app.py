@@ -148,4 +148,4 @@ with app.app_context():
 
 # unRun the app
 if __name__ == '__main__':
-    app.py(debug=False)
+    app.run(debug=False)
