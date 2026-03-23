@@ -175,6 +175,7 @@ Due to personal circumstances during the course, I was often learning new concep
 It made the process challenging but also really helped me learn faster.
 I'm really happy with how the project turned out overall.
 
+
 🌟 Future Features
 If I return to this project, I'd like to add:
 
@@ -194,3 +195,8 @@ These features would make the app even more useful and community-driven.
 
 ## Testing
 Detailed testing documentation can be found in [TESTING.md](TESTING.md)
+
+## Authentication:
+- Users must register and login to add/view recipes.
+- Recipes are private to the user who created them.
+- Edit/Delete actions are only allowed for the recipe owner.
