@@ -46,7 +46,8 @@ def load_user(user_id):
 @app.route('/')
 @login_required  # force login to see recipes
 def home():
-    recipes = Recipe.query.filter_by(user_id=current_user.id).all()
+    user_id = current_user.id
+    recipes = Recipe.query.filter_by(user_id=user_id).all()
     return render_template('index.html', recipes=recipes)
 
 # Registration
@@ -55,7 +56,6 @@ def register():
     if request.method == "POST":
         existing_user = User.query.filter_by(username=request.form['username']).first()
         if existing_user:
-            flash("Username already exists")
             return redirect(url_for("register"))
 
         hashed_password = generate_password_hash(request.form['password'])
@@ -73,11 +73,13 @@ def register():
 def login():
     if request.method == "POST":
         user = User.query.filter_by(username=request.form['username']).first()
+
         if user and check_password_hash(user.password, request.form['password']):
             login_user(user)
             return redirect(url_for('home'))
         else:
-            flash("Invalid username or password")
+            return redirect(url_for('login'))
+
     return render_template("login.html")
 
 # Logout
