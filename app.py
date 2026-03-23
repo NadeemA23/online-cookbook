@@ -146,6 +146,3 @@ def delete_recipe(recipe_id):
 with app.app_context():
     db.create_all()
 
-# unRun the app
-if __name__ == '__main__':
-    app.run(debug=False)
