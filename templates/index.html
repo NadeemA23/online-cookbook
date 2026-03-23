@@ -23,6 +23,10 @@
         </nav>
     </header>
 
+    {% if message %}
+  <p style="color:red">{{ message }}</p>
+{% endif %}
+
     <!-- Background image grid -->
     <div class="background-grid">
         <div class="grid-wrapper">
