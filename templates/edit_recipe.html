@@ -1,50 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Edit Recipe</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <meta charset="UTF-8">
+  <title>Edit Recipe</title>
+  <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body class="layout-body">
 
-    <!-- Header -->
-    <header class="site-header">
-        <h1>Cookbook</h1>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/add">Add Recipe</a>
-        </nav>
-    </header>
+<h2>Edit Recipe</h2>
 
-    <!-- Background Grid (reuse if you want) -->
-    <div class="background-grid">
-        <div class="grid-wrapper">
-            {% for i in range(1, 10) %}
-            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal' ~ i ~ '.jpg') }}');"></div>
-            {% endfor %}
-        </div>
-    </div>
+{% if message %}
+<p class="error">{{ message }}</p>
+{% endif %}
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="page-heading-wrapper">
-            <h2 class="page-heading">Edit Recipe</h2>
-        </div>
+<form method="POST">
+  <input type="text" name="name" value="{{ recipe.name }}" required>
+  <textarea name="ingredients" required>{{ recipe.ingredients }}</textarea>
+  <textarea name="steps" required>{{ recipe.steps }}</textarea>
+  <input type="text" name="cuisine" value="{{ recipe.cuisine }}" required>
+  <input type="text" name="tools" value="{{ recipe.tools }}" required>
+  <button type="submit">Update Recipe</button>
+</form>
+<footer class="site-footer">
+    <p><a href="/">Back to Home</a></p>
+    <p>&copy; 2025 My Cookbook App</p>
+</footer>
 
-        <form method="POST">
-            <input type="text" name="name" value="{{ recipe.name }}" required>
-            <textarea name="ingredients" required>{{ recipe.ingredients }}</textarea>
-            <textarea name="steps" required>{{ recipe.steps }}</textarea>
-            <input type="text" name="cuisine" value="{{ recipe.cuisine }}" required>
-            <input type="text" name="tools" value="{{ recipe.tools }}" required>
-            <button type="submit">Update Recipe</button>
-        </form>
-    </main>
-
-    <footer class="site-footer">
-        <p><a href="{{ url_for('home') }}">Back to Home</a>
-        <p>&copy; 2025 My Cookbook App</p>
-    </footer>
 </body>
 </html>

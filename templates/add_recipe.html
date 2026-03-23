@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <title>Add Recipe</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body class="layout-body">
-
-    
 
     <!-- Header -->
     <header class="site-header">
@@ -22,15 +20,15 @@
     <!-- Background image grid -->
     <div class="background-grid">
         <div class="grid-wrapper">
-            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal1.jpg') }}');"></div>
-            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal2.jpg') }}');"></div>
-            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal3.jpg') }}');"></div>
-            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal4.jpg') }}');"></div>
-            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal5.jpg') }}');"></div>
-            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal6.jpg') }}');"></div>
-            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal7.jpg') }}');"></div>
-            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal8.jpg') }}');"></div>
-            <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal9.jpg') }}');"></div>
+            <div class="grid-item" style="background-image: url('/static/images/meal1.jpg');"></div>
+            <div class="grid-item" style="background-image: url('/static/images/meal2.jpg');"></div>
+            <div class="grid-item" style="background-image: url('/static/images/meal3.jpg');"></div>
+            <div class="grid-item" style="background-image: url('/static/images/meal4.jpg');"></div>
+            <div class="grid-item" style="background-image: url('/static/images/meal5.jpg');"></div>
+            <div class="grid-item" style="background-image: url('/static/images/meal6.jpg');"></div>
+            <div class="grid-item" style="background-image: url('/static/images/meal7.jpg');"></div>
+            <div class="grid-item" style="background-image: url('/static/images/meal8.jpg');"></div>
+            <div class="grid-item" style="background-image: url('/static/images/meal9.jpg');"></div>
         </div>
     </div>
 
@@ -50,7 +48,7 @@
 
     <!-- Footer -->
     <footer class="site-footer">
-         <p><a href="{{ url_for('home') }}">Back to Home</a></p>
+        <p><a href="/">Back to Home</a></p>
         <p>&copy; 2025 My Cookbook App</p>
     </footer>
 
