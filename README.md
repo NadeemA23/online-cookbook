@@ -114,6 +114,26 @@ This section describes the manual tests performed to ensure that all functionali
 
 ![ER Diagram](static/images/testing_evidence.png)
 
+## HTML & CSS Validation Notes
+
+While validating my HTML using the W3C Markup Validator, several warnings and errors were flagged. These were not actual functional errors but were caused by using Jinja template syntax (e.g., {{ url_for('home') }}) in the HTML files.
+
+Curly braces ({}) in template expressions are not valid HTML characters, so the validator flagged them as illegal.
+Other template elements, such as {% if current_user.is_authenticated %}, also caused warnings because they are server-side instructions, not static HTML.
+
+To ensure accurate validation:
+
+I temporarily replaced Jinja template code with hard-coded URLs and removed template-only blocks.
+After validation, the HTML passed the W3C validator with no errors.
+I then restored the original Jinja code so the app works dynamically in Flask.
+
+Result: The site functions correctly, and all pages are fully rendered by Flask while preserving the original styling and interactivity. Validation errors were solely due to template syntax, not broken HTML.
+
+This was the case across all html paages.
+
+![W3 Validator before](static/images/beforeW3.png)
+![W3 Validator after](static/images/afterW3.png)
+
 ### Validation:
 - HTML validated using W3C Markup Validator
 - CSS validated using W3C CSS Validator
