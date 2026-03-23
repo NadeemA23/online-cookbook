@@ -110,6 +110,10 @@ This section describes the manual tests performed to ensure that all functionali
 - Users cannot edit or delete recipes that belong to other users.  
 - Login is required to see any recipes, add, edit, or delete.
 
+## Testing evidence
+
+![ER Diagram](static/images/testing_evidence.png)
+
 ### Validation:
 - HTML validated using W3C Markup Validator
 - CSS validated using W3C CSS Validator
