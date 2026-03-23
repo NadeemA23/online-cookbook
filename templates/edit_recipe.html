@@ -3,28 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <title>Edit Recipe</title>
-  <link rel="stylesheet" href="/static/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body class="layout-body">
 
-<h2>Edit Recipe</h2>
+  <!-- Header -->
+  <header class="site-header">
+    <h1>Cookbook</h1>
+    <nav>
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+  </header>
 
-{% if message %}
-<p class="error">{{ message }}</p>
-{% endif %}
+  <!-- Background grid -->
+  <div class="background-grid">
+    <div class="grid-wrapper">
+      {% for i in range(1,10) %}
+      <div class="grid-item" style="background-image: url('{{ url_for('static', filename='images/meal' ~ i ~ '.jpg') }}');"></div>
+      {% endfor %}
+    </div>
+  </div>
 
-<form method="POST">
-  <input type="text" name="name" value="{{ recipe.name }}" required>
-  <textarea name="ingredients" required>{{ recipe.ingredients }}</textarea>
-  <textarea name="steps" required>{{ recipe.steps }}</textarea>
-  <input type="text" name="cuisine" value="{{ recipe.cuisine }}" required>
-  <input type="text" name="tools" value="{{ recipe.tools }}" required>
-  <button type="submit">Update Recipe</button>
-</form>
-<footer class="site-footer">
-    <p><a href="/">Back to Home</a></p>
+  <!-- Main content -->
+  <main class="main-content">
+    <h2 class="page-heading">Edit Recipe</h2>
+
+    <form method="POST">
+      <input type="text" name="name" placeholder="Recipe Name" value="{{ recipe.name }}" required>
+      <textarea name="ingredients" placeholder="Ingredients" required>{{ recipe.ingredients }}</textarea>
+      <textarea name="steps" placeholder="Preparation Steps" required>{{ recipe.steps }}</textarea>
+      <input type="text" name="cuisine" placeholder="Cuisine" value="{{ recipe.cuisine }}" required>
+      <input type="text" name="tools" placeholder="Required Tools" value="{{ recipe.tools }}" required>
+      <button type="submit">Update Recipe</button>
+    </form>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p><a href="{{ url_for('home') }}">Back to Home</a></p>
     <p>&copy; 2025 My Cookbook App</p>
-</footer>
+  </footer>
 
 </body>
 </html>
