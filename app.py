@@ -53,25 +53,26 @@ def home():
 # Registration
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    message = None
     if request.method == "POST":
         existing_user = User.query.filter_by(username=request.form['username']).first()
         if existing_user:
-            return redirect(url_for("register"))
+            message = "Username already exists"
+            return render_template("register.html", message=message)
 
         hashed_password = generate_password_hash(request.form['password'])
         new_user = User(username=request.form['username'], password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
-
         login_user(new_user)
         return redirect(url_for('home'))
 
-    return render_template("register.html")
+    return render_template("register.html", message=message)
 
 # Login 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    message = ""
+    message = None
     if request.method == "POST":
         user = User.query.filter_by(username=request.form['username']).first()
         if user and check_password_hash(user.password, request.form['password']):
