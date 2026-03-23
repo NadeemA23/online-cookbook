@@ -46,6 +46,17 @@ I wanted to keep the design light, readable, and distraction-free, while still l
 - Pexels – Source for meal background images
 - W3C Validators – To validate HTML and CSS
 
+## Database Design
+
+The application uses a relational database with two main tables: `User` and `Recipe`.
+
+### ER Diagram
+![ER Diagram](static/images/ER_diagram.png)
+
+- Each user can have multiple recipes (1-to-many relationship).  
+- `PK` = Primary Key, `FK` = Foreign Key  
+- “owns” shows that a recipe belongs to a user.
+
 ## 🧪 Testing Summary
 
 Most of the testing was done manually during development and after feature implementation.
