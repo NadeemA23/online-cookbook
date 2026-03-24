@@ -301,18 +301,23 @@ form button:hover {
     padding: 1rem;
   }
 
+  .site-header h1 {
+    margin-bottom: 0.8rem;
+  }
+
   .site-header nav {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     width: 100%;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
   }
 
   .site-header nav a {
     margin: 0;
     width: 100%;
     box-sizing: border-box;
+    display: block;
   }
 
   .main-content {
@@ -366,6 +371,12 @@ form button:hover {
     padding: 0.8rem 1rem;
     margin: 1rem auto;
     text-align: center;
+    max-width: 90%;
+  }
+
+  .no-recipes-message {
+    max-width: 90%;
+    padding: 1rem;
   }
 
   .btn-add {
@@ -380,7 +391,6 @@ form button:hover {
     text-align: center;
   }
 }
-
 @media (max-width: 480px) {
 
   .site-header h1 {
@@ -405,5 +415,9 @@ form button:hover {
 
   form {
     padding: 0.8rem;
+  }
+
+  .no-recipes-message {
+    font-size: 1rem;
   }
 }
